@@ -15,13 +15,13 @@ fun isCanGo(): Boolean {
     return Randoms.pickNumberInRange(0, 9) >= 4
 }
 
-fun gameOfOneCar(carsMoving: Array<Int>, index: Int) {
+fun gameOfOneCar(carsMoving: MutableList<Int>, index: Int) {
     if (isCanGo()) {
         carsMoving[index] += 1
     }
 }
 
-fun gameOfTurn(cars: List<String>, movingOfCars: Array<Int>, outputView: OutputView) {
+fun gameOfTurn(cars: List<String>, movingOfCars: MutableList<Int>, outputView: OutputView) {
     for (i in 0 until cars.count()) {
         gameOfOneCar(movingOfCars, i)
         outputView.printGameResult(cars[i], movingOfCars[i])
@@ -29,13 +29,13 @@ fun gameOfTurn(cars: List<String>, movingOfCars: Array<Int>, outputView: OutputV
     println()
 }
 
-fun game(cars: List<String>, movingOfCars: Array<Int>, outputView: OutputView, count: Int) {
+fun game(cars: List<String>, movingOfCars: MutableList<Int>, outputView: OutputView, count: Int) {
     for (i in 0 until count) {
         gameOfTurn(cars, movingOfCars, outputView)
     }
 }
 
-fun getWinnerIndex(carsMoving: Array<Int>): MutableList<Int> {
+fun getWinnerIndex(carsMoving: MutableList<Int>): MutableList<Int> {
     val winners = mutableListOf<Int>()
     var maxNumber = 0
 
@@ -82,7 +82,7 @@ fun main() {
     val cars = inputCars(inputView, validation)
     val count = inputCount(inputView, validation)
 
-    val movingOfCars = Array(cars.count()) { 0 }
+    val movingOfCars = MutableList(cars.count()) { 0 }
 
     outputView.printOutput()
     game(cars, movingOfCars, outputView, count)
