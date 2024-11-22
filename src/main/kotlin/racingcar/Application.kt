@@ -24,7 +24,7 @@ fun gameOfOneCar(carsMoving: Array<Int>, index: Int) {
 fun gameOfTurn(cars: List<String>, carsMovingArray: Array<Int>, outputView: OutputView) {
     for (i in 0 until cars.count()) {
         gameOfOneCar(carsMovingArray, i)
-        outputView.gameResult(cars[i], carsMovingArray[i])
+        outputView.printGameResult(cars[i], carsMovingArray[i])
     }
     println()
 }
@@ -84,9 +84,9 @@ fun main() {
 
     val carsMovingArray = Array(cars.count()) { 0 }
 
-    outputView.outputPrint()
+    outputView.printOutput()
     game(cars, carsMovingArray, outputView, count)
 
     val winners = getWinnerIndex(carsMovingArray).map { cars[it] }
-    outputView.winnerPrint(winners)
+    outputView.printWinner(winners)
 }
