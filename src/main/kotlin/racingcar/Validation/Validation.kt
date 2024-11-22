@@ -4,7 +4,7 @@ import java.lang.NumberFormatException
 
 class Validation {
     fun checkCarNameLength(cars: List<String>) {
-        if (!(cars.all { it -> it.count() <= 5 })) {
+        if (!(cars.all { it.count() <= 5 })) {
             throw IllegalArgumentException("자동차 이름은 5자 이하만 가능합니다")
         }
     }
