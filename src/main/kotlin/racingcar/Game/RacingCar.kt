@@ -57,39 +57,16 @@ class RacingCar {
         return winners
     }
 
-    fun inputCars(inputView: InputView, validation: Validation): List<String> {
-        inputView.inputCars()
-        val inputCar = Console.readLine()
-        validation.checkInputCarIsNotEmpty(inputCar)
-
-        var cars: List<String> = inputCar.split(',')
-        validation.checkCarNameDuplication(cars)
-        cars = carsNameTrim(cars)
-        validation.checkCarNameLength(cars)
-
-        return cars
-    }
-
-    fun inputCount(inputView: InputView, validation: Validation): Int {
-        inputView.inputCount()
-        val inputCount = Console.readLine()
-        validation.checkCountIsNumber(inputCount)
-        val count = inputCount.toInt()
-
-        return count
-    }
-
     fun start(){
-
-        val cars = inputCars(inputView, validation)
-        val count = inputCount(inputView, validation)
+        val cars = inputView.inputCars()
+        val count = inputView.inputCount()
 
         val movingOfCars = MutableList(cars.count()) { 0 }
 
-        outputView.printOutput()
         game(cars, movingOfCars, outputView, count)
 
         val winners = getWinnerIndex(movingOfCars).map { cars[it] }
+        outputView.printOutput()
         outputView.printWinner(winners)
     }
 }
