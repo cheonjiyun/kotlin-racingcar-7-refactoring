@@ -31,6 +31,7 @@ class RacingCar {
     }
 
     private fun runGame() {
+        outputView.printOutput()
         for (i in 0 until count) {
             gameOfTurn()
         }
@@ -62,7 +63,6 @@ class RacingCar {
         cars = inputView.inputCars()
         count = inputView.inputCount()
 
-        outputView.printOutput()
         runGame()
 
         val winners = getWinners()

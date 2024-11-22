@@ -12,6 +12,7 @@ class InputView {
 
     fun inputCars(): List<String> {
         println("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)")
+
         val inputCar = Console.readLine()
         validation.checkInputCarIsNotEmpty(inputCar)
 
@@ -24,6 +25,7 @@ class InputView {
     }
 
     fun inputCount(): Int {
+
         println("시도할 횟수는 몇 회인가요?")
         val inputCount = Console.readLine()
         validation.checkCountIsNumber(inputCount)
