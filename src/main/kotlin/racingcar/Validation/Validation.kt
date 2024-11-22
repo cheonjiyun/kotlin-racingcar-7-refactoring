@@ -10,7 +10,7 @@ class Validation {
     }
 
     fun checkInputCarIsNotEmpty(inputCar: String) {
-        if (inputCar == "") {
+        if (inputCar.isBlank()) {
             throw IllegalArgumentException("자동차 이름을 입력하지 않았습니다")
         }
     }
