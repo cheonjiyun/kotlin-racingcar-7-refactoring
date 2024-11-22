@@ -8,21 +8,21 @@ class RacingCar {
     private val outputView = OutputView()
     private val inputView = InputView()
 
+    lateinit var cars: List<String>
+    private var count: Int = 0
     private val movingOfCarsRecord = MutableList(cars.count()) { 0 }
-    lateinit var cars : List<String>
-    private var count : Int = 0
 
-    fun isCanGo(): Boolean {
+    private fun isCanGo(): Boolean {
         return Randoms.pickNumberInRange(0, 9) >= 4
     }
 
-    fun gameOfOneCar(index: Int) {
+    private fun gameOfOneCar(index: Int) {
         if (isCanGo()) {
             movingOfCarsRecord[index] += 1
         }
     }
 
-    fun gameOfTurn() {
+    private fun gameOfTurn() {
         for (i in 0 until cars.count()) {
             gameOfOneCar(i)
             outputView.printGameResult(cars[i], movingOfCarsRecord[i])
@@ -30,13 +30,14 @@ class RacingCar {
         println()
     }
 
-    fun game() {
+    private fun runGame() {
         for (i in 0 until count) {
             gameOfTurn()
         }
     }
 
-    fun getWinnerIndex(): MutableList<Int> {
+    // 우승자들 index 추출
+    private fun getWinnerIndex(): MutableList<Int> {
         val winners = mutableListOf<Int>()
         var maxNumber = 0
 
@@ -53,14 +54,18 @@ class RacingCar {
         return winners
     }
 
-    fun start(){
+    private fun getWinners(): List<String> {
+        return getWinnerIndex().map { cars[it] }
+    }
+
+    fun start() {
         cars = inputView.inputCars()
         count = inputView.inputCount()
 
-        game()
-
-        val winners = getWinnerIndex().map { cars[it] }
         outputView.printOutput()
+        runGame()
+
+        val winners = getWinners()
         outputView.printWinner(winners)
     }
 }
